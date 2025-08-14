@@ -2,44 +2,49 @@ syntax = "proto3";
 
 package pb;
 
+import "google/api/annotations.proto";
 import "rpc_create_user.proto";
-// import "rpc_login_user.proto";
+import "rpc_login_user.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/Llala/simplebank/pb";
 
 
-option go_package = "github.com/techschool/simplebank/pb";
 
-// option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
-//     info: {
-//         title: "Simple Bank API";
-//         version: "1.2";
-//         contact: {
-//             name: "Go course simplebank";
-//             url: "github.com/Llala/simplebank";
-//             email: "evgeniya.yuzhikina@gmail.com";
-//         };
-//     };
-// };
+// option go_package = "github.com/grpc-ecosystem/grpc-gateway/v2/examples/internal/proto/examplepb";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {
+        title: "Simple Bank API";
+        version: "1.2";
+        contact: {
+            name:"Evgeniya Yuzhikina";
+            url: "https://github.com/Llala";
+            email: "evgeniya.yuzhikina@gmail.com";
+        };
+    };
+};
+
 
 service SimpleBank {
     rpc CreateUser (CreateUserRequest) returns (CreateUserResponse) {
-        // option (google.api.http) = {
-        //     post: "/v1/create_user"
-        //     body: "*"
-        // };
+        option (google.api.http) = {
+            post: "/v1/create_user"
+            body: "*"
+        };
         // option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
         //     description: "Use this API to create a new user";
         //     summary: "Create new user";
         // };
     }
 
-    // rpc LoginUser (LoginUserRequest) returns (LoginUserResponse) {
-    //     // option (google.api.http) = {
-    //     //     post: "/v1/login_user"
-    //     //     body: "*"
-    //     // };
-    //     // option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-    //     //     description: "Use this API to login user and get access token & refresh token";
-    //     //     summary: "Login user";
-    //     // };
-    // }
+    rpc LoginUser (LoginUserRequest) returns (LoginUserResponse) {
+        option (google.api.http) = {
+            post: "/v1/login_user"
+            body: "*"
+        };
+        // option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+        //     description: "Use this API to login user and get access token & refresh token";
+        //     summary: "Login user";
+        // };
+    }
 }
