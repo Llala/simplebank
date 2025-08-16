@@ -15,7 +15,7 @@ option go_package = "github.com/Llala/simplebank/pb";
 option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
     info: {
         title: "Simple Bank API";
-        version: "1.2";
+        version: "1.3";
         contact: {
             name:"Evgeniya Yuzhikina";
             url: "https://github.com/Llala";
@@ -31,10 +31,10 @@ service SimpleBank {
             post: "/v1/create_user"
             body: "*"
         };
-        // option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        //     description: "Use this API to create a new user";
-        //     summary: "Create new user";
-        // };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Use this API to create a new user";
+            summary: "Create new user";
+        };
     }
 
     rpc LoginUser (LoginUserRequest) returns (LoginUserResponse) {
@@ -42,9 +42,9 @@ service SimpleBank {
             post: "/v1/login_user"
             body: "*"
         };
-        // option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-        //     description: "Use this API to login user and get access token & refresh token";
-        //     summary: "Login user";
-        // };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            description: "Use this API to login user and get access token & refresh token";
+            summary: "Login user";
+        };
     }
 }
